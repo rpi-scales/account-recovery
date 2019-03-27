@@ -1,19 +1,4 @@
-/*
-Theme color
-    background: #009688;
-    background: #337ab7;
- */
 
-let linkgithub = "https://github.com/kirbisity"
-let linklinef = "https://www.youtube.com/watch?v=gIF-82xRhpQ)";
-let linkresume = "data/resume_yanlin_zhu.pdf";
-let linklinkedin = "https://www.linkedin.com/in/zhu-yanlin/";
-let linkwiki = "wikirby/scienceofcomputer.html";
-let linkscalespaper = "../data/scales_paper.pdf";
-let castgitlink = "https://github.com/CSDTs/CSDT_Single_Page";
-function openlink(textlink) {
-    window.open(textlink);
-}
 let headlineshow = 0;
 function showTopNav(){
     if (!headlineshow){
@@ -47,8 +32,7 @@ $('.button').on('click', function(event) {
 
 let time = 0;
 let time2 = 0;
-let timeCount = setInterval(myTimer, 100);
-let timeCount2 = setInterval(myTimer2, 40);
+let timeCount = setInterval(myTimer, 50);
 //let colors = [[42, 187, 252], [54, 131, 245]]
 let colors = [[42, 187, 252], [44, 111, 215]]
 //let colors = [[180, 180, 180], [160, 160, 160]];
@@ -265,30 +249,23 @@ function myTimer() {
     let gradient = 'linear-gradient(' + gradBeg + ', ' + gradEnd + ')'
     document.getElementById('intro-overlay').style.background = gradient
     */
-
-    if (subheaderplace < subheaderfull.length){
-        subheadertext += subheaderfull.charAt(subheaderplace);
-        subheaderplace+=1;
-        document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "&nbsp */";
-    }
-
-    if (time%10 < 5) {
-        document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "| */";
-    }
-    else {
-        document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "&nbsp */";
-    }
     if (time%2 == 1) {
+        if (subheaderplace < subheaderfull.length){
+            subheadertext += subheaderfull.charAt(subheaderplace);
+            subheaderplace+=1;
+            document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "&nbsp */";
+        }
+
+        if (time%10 < 5) {
+            document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "| */";
+        }
+        else {
+            document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "&nbsp */";
+        }
+    }
+    if (time%600 == 1) {
         global.refreshClock();
     }
-
-
-
-}
-
-
-
-function myTimer2() {
     gclouds.drift();
 }
 
