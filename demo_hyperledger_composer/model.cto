@@ -1,0 +1,160 @@
+/**
+ * Sample business network definition.
+ */
+namespace org.example.basic
+
+/*
+asset SampleAsset identified by assetId {
+  o String assetId
+  --> SampleParticipant owner
+  o String value
+}
+
+participant SampleParticipant identified by participantId {
+  o String participantId
+  o String firstName
+  o String lastName
+}
+
+transaction SampleTransaction {
+  --> SampleAsset asset
+  o String newValue
+}
+
+event SampleEvent {
+  --> SampleAsset asset
+  o String oldValue
+  o String newValue
+}
+*/
+
+/**
+ * This is an arbitrary smart contract to demostrate voting
+ */
+asset Commodity identified by tradingSymbol {
+    o String tradingSymbol
+    o String description
+    o String mainExchange
+    o Double quantity
+    --> User owner
+}
+participant User identified by userId {
+    o String userId
+    o String name
+    o Integer aCoin
+    o Integer iteration
+    o Integer reputation
+}
+transaction Trade {
+    --> Commodity commodity
+    --> User newOwner
+}
+
+//===============================================
+/**
+ * Below is the models for decentralized voting *
+ *       Add to the end of the model file       *
+ */
+
+asset VoteToken identified by votetokenID {
+    o String votetokenID
+    o String response
+    --> Poll poll
+    
+    // Below is specific to the network (to be edited)
+    --> User creator
+    --> User owner
+}
+
+asset Proposal identified by proposalID {
+    o String proposalID
+    o String statementOS // statement of situation
+    o String detail
+    o String newAccount
+    o String oldAccount
+    o String detailpoll
+    --> User owner
+}
+
+
+asset Poll identified by pollID {
+    o String pollID
+    o String detail
+    o String deadline
+    o String result
+    
+    // Below is for RSA encryption
+    o RSAKey rsakey
+    
+    // Below is specific to the network (to be edited)
+    --> User host
+}
+
+
+transaction Recovery {
+    o String proposalName
+    o String sos
+    o String detail
+    o String initiator
+    o String oldAccount
+    --> User[] voters
+}
+
+transaction EndRecovery {
+    o String proposalName
+    --> Proposal proposal
+}
+
+transaction VetoRecovery {
+    --> User owner
+}
+
+
+
+transaction CreatePoll {
+    o String pollName
+    o String pollDetail
+    o String pollDeadline
+    
+    // Below is for RSA encryption
+    o String publicKey
+    
+    // Below is specific to the network (to be edited)
+    --> User pollOwner
+    --> User[] voters
+}
+
+transaction Vote {
+    o String response
+    --> VoteToken votetoken
+}
+
+transaction RevealKey {
+    o String d
+    o String p
+    o String q
+    --> Poll poll
+}
+
+transaction CompletePoll {
+  --> Poll poll
+    // Below is specific to the network (to be edited)
+}
+
+asset RSAKey identified by rsakeyID{
+    o String rsakeyID
+    o String n
+    o Integer e
+    o String d
+    o String p
+    o String q
+    o String dmp1 // dec bignumber
+    o String dmq1 // dec bignumber
+    o String coeff // dec bignumber
+}
+
+asset NBclassifier identified by nbclassifierID{
+    o String nbclassifierID
+    o String jsondata
+}
+

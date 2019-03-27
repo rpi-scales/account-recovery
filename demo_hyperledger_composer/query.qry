@@ -1,0 +1,59 @@
+/**
+ * Query file for voting
+ */
+query selectMatchingVoteTokens {
+  description: "Select votetokens for the given poll"
+  statement:
+      SELECT org.example.basic.VoteToken
+  		  WHERE (response != '')
+}
+
+/**
+ * Query file for classifier
+ */
+query selectNBclassifier {
+  description: "Select classifier"
+  statement:
+      SELECT org.example.basic.NBclassifier
+  		  WHERE (nbclassifierID == _$nbcID)
+}
+
+/**
+ * Query file for user
+ */
+query selectMatchingUser {
+  description: "Select user for the given id"
+  statement:
+      SELECT org.example.basic.User
+  		  WHERE (userId == _$uID)
+}
+
+/**
+ * Query file for poll
+ */
+query selectMatchingPoll {
+  description: "Select poll for the given id"
+  statement:
+      SELECT org.example.basic.Poll
+  		  WHERE (pollID == _$pID)
+}
+
+/**
+ * Query file for proposal
+ */
+query selectMatchingProposal {
+  description: "Select proposal for the given id"
+  statement:
+      SELECT org.example.basic.Proposal
+  		  WHERE (proposalID == _$ppsID)
+}
+
+/**
+ * Query file for proposal with oldaccount id
+ */
+query selectProposalsbyOldAccount {
+  description: "Select proposal for the given old account id"
+  statement:
+      SELECT org.example.basic.Proposal
+  		  WHERE (oldAccount == _$ouID)
+}

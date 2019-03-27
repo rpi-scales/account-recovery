@@ -1,0 +1,136 @@
+/**
+ * Sample access control list.
+ */
+rule EverybodyCanReadEverything {
+    description: "Allow all users read access to all resources"
+    participant: "org.example.basic.User"
+    operation: READ
+    resource: "org.example.basic.*"
+    action: ALLOW
+}
+
+rule EverybodyCanSubmitTransactions {
+    description: "Allow all users to submit a poll"
+    participant: "org.example.basic.User"
+    operation: CREATE
+    resource: "org.example.basic.CreatePoll"
+    action: ALLOW
+}
+
+rule OwnerHasFullAccessToTheirAssets {
+    description: "Allow all users full access to their assets"
+    participant(p): "org.example.basic.User"
+    operation: ALL
+    resource(r): "org.example.basic.Commodity"
+    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+rule SystemACL {
+    description: "System ACL to permit all access"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
+
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
+
+
+rule OwnerHasFullAccessToThemselves {
+    description: "Allow all users full access to their assets"
+    participant: "org.example.basic.User"
+    operation: ALL
+    resource: "org.example.basic.User"
+    action: ALLOW
+}
+
+rule OwnerHasFullAccessToRSAKey {
+    description: "Allow all users full access to RSAKey"
+    participant: "org.example.basic.User"
+    operation: ALL
+    resource: "org.example.basic.RSAKey"
+    action: ALLOW
+}
+
+
+rule OwnerHasFullAccessToTheirVoteToken {
+    description: "Allow all users full access to their votetokens"
+    participant: "org.example.basic.User"
+    operation: ALL
+    resource: "org.example.basic.VoteToken"
+    action: ALLOW
+}
+
+rule OwnerHasFullAccessToTheirPoll {
+    description: "Allow all users full access to their polls"
+    participant: "org.example.basic.User"
+    operation: ALL
+    resource: "org.example.basic.Poll"
+    action: ALLOW
+}
+
+rule OnlyVoteTokenOwnerCanVote {
+    description: "Allow votetoken owner to cast a vote"
+    participant: "org.example.basic.User"
+    operation: CREATE
+    resource: "org.example.basic.Vote"
+    action: ALLOW
+}
+
+rule EverybodyCanSubmitAccountRecovery {
+    description: "Allow every user to submit account recovery"
+    participant: "org.example.basic.User"
+    operation: CREATE
+    resource: "org.example.basic.Recovery"
+    action: ALLOW
+}
+
+rule OnlyInitiatorEndAccountRecovery {
+    description: "Allow proposal initiator to end account recovery"
+    participant(p): "org.example.basic.User"
+    operation: CREATE
+    resource(r): "org.example.basic.EndRecovery"
+    condition: (r.proposal.newAccount === p.getIdentifier())
+    action: ALLOW
+}
+
+rule OnlyOwnerCanVetoRecovery {
+    description: "Allow original owner to veto account recovery"
+    participant(p): "org.example.basic.User"
+    operation: CREATE
+    resource(r): "org.example.basic.VetoRecovery"
+    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+rule EverybodyCanCreateProposal {
+    description: "Allow all users to create a proposal"
+    participant: "org.example.basic.User"
+    operation: CREATE
+    resource: "org.example.basic.Proposal"
+    action: ALLOW
+}
+
+rule OnlyOwnerHasFullAccessToTheirProposal {
+    description: "Only allow owners to delete and create a proposal"
+    participant(p): "org.example.basic.User"
+    operation: ALL
+    resource(r): "org.example.basic.Proposal"
+    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
