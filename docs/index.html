@@ -45,24 +45,89 @@
             <div id = "g-cloud9" class = "graphics-element cloud"></div>
 
             <div id="intro-content">
-                <h1 ></strong>Account Recovery in Decentralized Applications by Voting</h1>
+                <h1 ></strong>Account Recovery in DApps by Voting</h1>
                 <p id="indexsubheader" class="subtitle">One of SCALES projects</p>
-				<h2 id="featured1" class="subtitle">View On Github</h2>
             </div>
 
             <div id="project1-container">
                 <a href="https://github.com/kirbisity/scales_project" id="project1" class="button projects wp5 animated slideInUp">
-                    ▶ GO
+                    ▶ View On Github
                 </a>
             </div>
         </div>
     </div>
+	
+	
+	<section id="motivation" class="displayList brownList">
+		<h1>Introduction</h1>
+		<div class="oneItem">
+			<h2>Motivation</h2>
+			<p>In a decentralized application (DApp), there is no authority to
+be in charge of a lost key situation like a bank account, email or
+social network app. Therefore, a lost key is lost forever. In
+Bitcoin, it is estimated four million Bitcoins have vanished
+forever due to lost keys</p>
+			<p>There have been existing works on recovery using predefined
+<a href = "https://search.proquest.com/docview/2021240449?pq-origsite=gscholar">emergency contacts</a> and <a href="https://eprint.iacr.org/2019/017.pdf">advanced secret sharing</a>. However,
+these solutions requires the user be forward thinking.</p>
+		</div>
+		<div class="oneItem">
+			<h2>Method</h2>
+			<p>We propose a method to use voting by previous transaction
+partners to verify user identity. The major advantage of this new
+solution is the ability to set up the recovery after one realizes
+they lost a key.</p>
+			<p>We propose a method to use voting by previous transaction
+partners to verify user identity. The major advantage of this new
+solution is the ability to set up the recovery after one realizes
+they lost a key.</p>
+			<p></p>
+		</div>
+		
+		<img class="detail-image-small" src="github-page-sources/images/flowchart.JPG" alt="scales-spam-1.JPG">
+	</section>
+	
+	<section id="method" class="displayList whiteList">
+		<h1>Proposal</h1>
+		<div class="oneItem">
+			<h2>The solution make use of the information asymmetry between a
+normal user and trade partners</h2>
+			<p></p>
+			<p>What everybody knows : transaction amount, partners (from public ledger)</p>
+			<p>What the trade partner knows : transaction amount, partners, good, method of delivery</p>
+			<p>Each trade partner knows a piece of the owner’s information. But only the owner is supposed to know everything.</p>
+			<h2>The user will write down the private information for each prev trade partner encrypted with the partner’s pubkey. The trade partners can then vote if the information is detailed and truthful<h2>
+			<img class="detail-image-mid" src="github-page-sources/images/spam1.jpg" alt="scales-spam-1.JPG">
+<p>•_• </p>
+		</div>
+		<div class="oneItem">
+			<h2>We developed the demo on hyperledger composer</h2>
+			<p>We used virtual coins to illustrate this system</p>
+			<p>The prev voters are found using historian registry</p>
+			<p>The private information(proofs) is encrypted offline then uploaded and stored as an asset</p>
+			<p>Every voter can view the proof, but can only decrypt his/her version using his/her private key offline</p>
+			<p>We also used a spam filter on the plaintext description to reduce fake recovery attacks</p>
+			<p>Veto-recovery makes sure the original owner can close the recovery on his/her account if it is an attack. Only the original owner can submit the Veto-recovery transaction</p>
+			<p></p>
+		</div>
+		
+	</section>
+	
+			<section id="limitation" class="displayList blackList">
+		<h1>Limitation</h1>
+		<div class="oneItem">
+			<h2>51% Attack as a trader</h2>
+			<p>A malicious attacker can plan to steal a user’s account by doing a lot of trades with the user using different accounts, to a point when more than half of the trade partners are controlled by the attacker. Then the attacker can recover the account if the owner didn’t veto.</p>
+			<h2>Social engineering</h2>
+			<p>The attacker may obtain private information about a user from cyberstalking or phishing scams. With enough data, the attacker may be able to convince the voters that he/she is the real owner of the account. </p>
+			<p></p>
+	</section>
 
 
 
 	<section id="footer">
 		<div id="footerText">
-			<p>Designed and built by Yanlin Zhu 2018</p>
+			<p>SCALES Project</p>
 		</div>
         <table id = "footerpc" class = "footer-table" width="100%">
             <tr>
@@ -127,6 +192,9 @@
                 <td width="1000px"></td>
             </tr>
         </table>
+		<div id="footerText">
+			<p>Designed and built by Yanlin Zhu 2019</p>
+		</div>
 	</section>
 
     <script type="text/javascript" src="github-page-sources/script.js"></script>
