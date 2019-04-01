@@ -207,7 +207,7 @@ let gcomp = new graphicComponents();
 let gclouds = new GraphicCloud();
 gclouds.randomize();
 
-let subheaderfull = "One of SCALES projects";
+let subheaderfull = "Introduction";
 let subheadertext = "";
 let subheaderplace = 0;
 
@@ -296,72 +296,27 @@ $(window).scroll(function (event) {
 
     document.getElementById("pBarL").style.width = Math.round(pct*50).toString() +"%";
     document.getElementById("pBarR").style.width = Math.round(pct*50).toString() +"%";
-    if (scroll <= 1000) {
+    if (scroll <= 1080) {
         document.getElementById("intro-content").style.top = Math.round(scroll/4).toString() + "px";
-        document.getElementById("intro-content").style.opacity = Math.max(0, 1-scroll*0.002).toString();
+        document.getElementById("intro-content").style.opacity = Math.max(0, 1-scroll*0.001).toString();
         if (pos != 0) {
             pos = 0
             subheaderplace = 0;
             subheadertext = "";
             gclouds.show();
-            document.getElementById("topMenuMain").style.height = "80px";
-            document.getElementById("topMenuMain").style.background = "rgba(55,55,55,0.8)";
-            document.getElementById("headline").style.top = "30px";
-            document.getElementById("topmenushow").style.fontSize = "35px";
-            document.getElementById("topmenushow").style.lineHeight = "50px";
+			document.getElementById("topMenuMain").style.height = "0px";
+            document.getElementById("headline").style.top = "-50px";
 
         }
-    } else if (scroll > 1000) {
+    } else if (scroll > 1080) {
         if (pos == 0) {
             pos = 1;
-            gclouds.hide();
-            gclouds.randomize();
-            document.getElementById("topMenuMain").style.height = "60px";
-            document.getElementById("topMenuMain").style.background = "rgba(55,55,55,1)";
-            document.getElementById("headline").style.top = "10px";
-            document.getElementById("topmenushow").style.fontSize = "30px";
-            document.getElementById("topmenushow").style.lineHeight = "40px";
-
+			gclouds.hide();
+			document.getElementById("topMenuMain").style.height = "70px";
+            document.getElementById("headline").style.top = "20px";
         }
     }
-    undoGraphics();
 });
-
-
-
-let previewpage = function (purl, opn) {
-    var uagent = navigator.userAgent.toLowerCase();
-    let deviceList = ['android', 'webos', 'blackberry', 'bb', 'playbook', 'ipod', 'iemobile', 'windows phone', 'kindle', 'silk', 'opera mini','iphone', 'ipad', 'kindle'];
-    for (let i = 0; i < deviceList.length; i++) {
-        if (uagent.search(deviceList[i]) > -1){
-            return;
-        }
-    }
-    if (opn) {
-        gcomp.preview = 1;
-        let msx = event.clientX;
-        let msy = event.clientY;
-        document.getElementById("preview-index").style.backgroundImage = purl;
-        document.getElementById("preview-index").style.display = "block";
-        if (msy < pageH * 0.8)
-            document.getElementById("preview-index").style.top = (msy+30).toString()+"px";
-        else
-            document.getElementById("preview-index").style.top = (msy-130 - Math.round(pageH*0.16)).toString()+"px";
-        document.getElementById("preview-index").style.left = (msx-pageW*0.14).toString()+"px";
-        document.getElementById("index-mask").style.display = "block";
-    } else {
-        gcomp.preview = 0;
-        document.getElementById("preview-index").style.display = "none";
-        document.getElementById("index-mask").style.display = "none";
-    }
-}
-
-let undoGraphics = function () {
-    if (gcomp.preview){
-        gcomp.preview = 0;
-        previewpage('', 0);
-    }
-}
 
 let mouseX = 0;
 let mouseY = 0;
@@ -378,5 +333,3 @@ function mouseMoves(event) {
     mouseY = event.clientY;
     gclouds.set();
 }
-
-

@@ -8,7 +8,7 @@
 	<meta name="author" content="yanlin zhu" />
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="github-page-sources/style.css">
-    <link rel="icon" href="images/favicon.png">
+    <link rel="icon" href="github-page-sources/images/favicon.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
     </style>
@@ -21,11 +21,12 @@
     <div id="pBarR" class="progressBar"></div>
 	<div id="topMenuMain" class="topMenu">
         <div id="headline">
-		<a id="featured" class="button topnav"; title="Return to top"; href="#intro0";>Top</a>
-		<a id="about" class="button topnav"; title="Introduction"; href="#introduction";>Introduction</a>
-		<a id="experience" class="button topnav"; title="Proposal"; href="#proposal";>Proposal</a>
-		<a id="projects" class="button topnav"; title="Limitation"; href="#limitation";>Limitation</a>
-        </div>
+		<a id="but1" class="button topnav"; title="Return to top"; href="#intro0";>Introduction</a>
+		<a id="but2" class="button topnav"; title="Introduction"; href="#proposal";>Proposal</a>
+		<a id="but3" class="button topnav"; title="Proposal"; href="#limitation";>Limitation</a>
+		</div>
+		<a href="https://github.com/kirbisity/scales_project" id="but4" class="button topnav projects wp5 animated slideInUp">View On Github</a>
+        
         <a id="topmenushow" class="button topnav navmenu"; onclick="showTopNav()" title="Show menu";>&#9776</a>
     </div>
 
@@ -46,49 +47,52 @@
 
             <div id="intro-content">
                 <h1 ></strong>Account Recovery in DApps by Voting</h1>
-                <p id="indexsubheader" class="subtitle">One of SCALES projects</p>
-            </div>
-
-            <div id="project1-container">
-                <a href="https://github.com/kirbisity/scales_project" id="project1" class="button projects wp5 animated slideInUp">
-                    ▶ View On Github
-                </a>
+                <p id="indexsubheader" class="subtitle">Introduction</p>
+				<img class="detail-image-small" src="github-page-sources/images/flowchart.JPG" alt="scales-spam-1.JPG">
             </div>
         </div>
+		
+		
+
     </div>
 	
 	
-	<section id="introduction" class="displayList brownList">
-		<h1>Introduction</h1>
-		<div class="oneItem">
-			<h2>Motivation</h2>
-			<p>In a decentralized application (DApp), there is no authority to
-be in charge of a lost key situation like a bank account, email or
-social network app. Therefore, a lost key is lost forever. In
-Bitcoin, it is estimated four million Bitcoins have vanished
-forever due to lost keys</p>
-			<p>There have been existing works on recovery using predefined
-<a href = "https://search.proquest.com/docview/2021240449?pq-origsite=gscholar">emergency contacts</a> and <a href="https://eprint.iacr.org/2019/017.pdf">advanced secret sharing</a>. However,
-these solutions requires the user be forward thinking.</p>
-		</div>
-		<div class="oneItem">
-			<h2>Method</h2>
-			<p>We propose a method to use voting by previous transaction
-partners to verify user identity. The major advantage of this new
-solution is the ability to set up the recovery after one realizes
-they lost a key.</p>
-			<p>We propose a method to use voting by previous transaction
-partners to verify user identity. The major advantage of this new
-solution is the ability to set up the recovery after one realizes
-they lost a key.</p>
-			<p></p>
-		</div>
+	
 		
-		<img class="detail-image-small" src="github-page-sources/images/flowchart.JPG" alt="scales-spam-1.JPG">
-	</section>
+		
+		<section id="introduction" class="displayList brownList">
+			<h1>Introduction</h1>
+			<br>
+			<div class="oneItem">
+				<h2>Motivation</h2>
+				<p>In a decentralized application (DApp), there is no authority to
+	be in charge of a lost key situation like a bank account, email or
+	social network app. Therefore, a lost key is lost forever. In
+	Bitcoin, it is estimated four million Bitcoins have vanished
+	forever due to lost keys</p>
+				<p>There have been existing works on recovery using predefined
+	<a href = "https://search.proquest.com/docview/2021240449?pq-origsite=gscholar">emergency contacts</a> and <a href="https://eprint.iacr.org/2019/017.pdf">advanced secret sharing</a>. However,
+	these solutions requires the user be forward thinking.</p>
+			</div>
+			<div class="oneItem">
+				<h2>Method</h2>
+				<p>We propose a method to use voting by previous transaction
+	partners to verify user identity. The major advantage of this new
+	solution is the ability to set up the recovery after one realizes
+	they lost a key.</p>
+				<p>We propose a method to use voting by previous transaction
+	partners to verify user identity. The major advantage of this new
+	solution is the ability to set up the recovery after one realizes
+	they lost a key.</p>
+				<p></p>
+			</div>
+			
+			
+		</section>
 	
 	<section id="proposal" class="displayList whiteList">
 		<h1>Proposal</h1>
+		<br>
 		<div class="oneItem">
 			<h2>The solution make use of the information asymmetry between a
 normal user and trade partners</h2>
@@ -115,6 +119,7 @@ normal user and trade partners</h2>
 	
 			<section id="limitation" class="displayList blackList">
 		<h1>Limitation</h1>
+		<br>
 		<div class="oneItem">
 			<h2>51% Attack as a trader</h2>
 			<p>A malicious attacker can plan to steal a user’s account by doing a lot of trades with the user using different accounts, to a point when more than half of the trade partners are controlled by the attacker. Then the attacker can recover the account if the owner didn’t veto.</p>

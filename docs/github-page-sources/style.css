@@ -29,7 +29,7 @@ body {
     letter-spacing: 0.2em;
     text-transform: uppercase;
     width: 100%;
-    height: 80px;
+    height: 0px;
     background: rgba(55,55,55,0.8);
     line-height: 80px;
     font-size: 16px;
@@ -41,7 +41,7 @@ body {
 
 #headline {
     position: relative;
-    top: 30px;
+    top: -50px;
     display: block;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
@@ -56,6 +56,29 @@ body {
     transition-duration: 0.3s;
     z-index: 33;
 }
+
+.button.topnav.projects{
+    position: absolute;
+    color: #FFF;
+    background: transparent;
+    border: 2px solid #FFF;
+    border-radius: 4px;
+    padding: 0px 0px;
+	margin-top:10px;
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: none;
+	font-size: 16px;
+	line-height:50px;
+    width: 210px;
+    height: 50px;
+}
+
+.button.topnav.projects:hover{
+	color: #2cecda;
+    border: 2px solid #2cecda;
+}
+
 
 .button.topnav {
     text-align: center;
@@ -112,11 +135,6 @@ body {
 .button:focus {
     outline:0;
 }
-.button.topnav:focus {
-    color: #FFF;
-    background: #697286;
-    border-width: 0px;
-}
 #home, #home:hover, #home:focus {
     color: #FFF;
     background: transparent;
@@ -132,23 +150,25 @@ body {
     line-height: 0px;
     font-size: 18px;
 }
-#featured {
-    left: calc(50% - 400px);
+#but1 {
+    left: calc(50% - 300px);
 }
-#about {
-    left: calc(50% - 200px);
+#but2 {
+    left: calc(50% - 100px);
 }
-#experience {
-    left: calc(50% + 00px);
+#but3 {
+    left: calc(50% + 100px);
 }
-#projects {
-    left: calc(50% + 200px);
+#but4{
+	left: calc(100% - 260px);
 }
+
 #topmenushow{
     top: 14px;
     left: calc(100% - 80px);
     display: none;
 }
+
 
 @media (max-width: 992px) {
     #topmenushow{
@@ -160,21 +180,20 @@ body {
     #headline{
         display: none;
     }
-    #featured {
+    #but1 {
         left: calc(100% - 200px);
         top:50px;
     }
-    #about {
+    #but2 {
         left: calc(100% - 200px);
         top:100px;
     }
-    #experience {
+    #but3 {
         left: calc(100% - 200px);
         top:150px;
     }
-    #projects {
-        left: calc(100% - 200px);
-        top:200px;
+    #but4 {
+        left: calc(50% - 105px);
     }
 }
 
@@ -218,6 +237,13 @@ body {
     letter-spacing: 3px;
 }
 
+@media (max-width: 480px) {
+    #intro0 h1 {
+        font-size: 30px;
+    }
+}
+
+
 #intro0 h2 {
     text-align: center;
     text-transform: uppercase;
@@ -251,16 +277,7 @@ body {
 }
 
 
-@media (max-width: 480px) {
-    #intro0 h1 {
-        font-size: 30px;
-    }
-}
 
-#featured1{
-    margin-top: 60px;
-    font-size: 24px;
-}
 
 .section .overlay-wrapper .divider,
 .section .section-wrapper .divider {
@@ -439,50 +456,11 @@ body {
     z-index: 0;
 }
 
-.button.projects{
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.3);
-    text-align: center;
-    line-height: 20vw;
-    font-size: 3vw;
-    border-radius: 8px;
-    position: relative;
-    display: block;
-    z-index: 18;
-    background-color: #000;
-}
-
-#project1-container{
-    position:absolute;
-    left: calc(30% - 1px);
-    width: 40vw;
-    top: 510px;
-}
-
-#project1{
-    background: linear-gradient(to bottom, rgba(76,76,76,0.5) 0%, rgba(89,89,89,0.5) 12%, rgba(102,102,102,0.5) 25%, rgba(71,71,71,0.5) 39%, rgba(44,44,44,0.5) 50%, rgba(0,0,0,0.5) 51%, rgba(17,17,17,0.5) 60%, rgba(43,43,43,0.5) 76%, rgba(28,28,28,0.5) 91%, rgba(19,19,19,0.5) 100%), url('../github-page-sources/images/github.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: relative;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 20vw;
-
-}
-
-#project1:hover, #project1:focus{
-    background: url('../github-page-sources/images/github.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: relative;
-    background-repeat: no-repeat;
-}
-
 .displayList {
 	color: #000;
 	line-height: calc(18px + 1vh);
 	position:relative;
-    padding-top: 9vh;
+    padding-top: 6vh;
     padding-bottom: 9vh;
     width: 100%;
 	z-index: 4;
@@ -492,13 +470,14 @@ body {
 	color: #555;
     font-size: calc(24px + 1vh);
     margin-left: 5vw;
+	margin-right: 20px;
 	text-shadow: 0 1px 0 #fff,
 				 0 0px 20px rgba(100,100,100,0.3);
 	float: left;
 }
 
 .displayList h2 {
-	padding-top: 1vh;
+	padding-top: 10px;
 	width:50vw;
     font-size: calc(14px + 1vh);
     margin-left: 20vw;
@@ -522,15 +501,6 @@ body {
 	margin-left: 25vw;
 } 
 
-.displayList p2 {
-	width: 70vw;
-	font-family: Courier New;
-    font-size: calc(14px + 0.8vh);
-    margin-top: calc(0px + 0vh);
-    margin-bottom: calc(6px + 0.4vh);
-	margin-left: 25vw;
-}
-
 .displayList a {
     font-weight: 500;
     color: #333;
@@ -539,9 +509,45 @@ body {
     color: #00eecc;
 }
 
+@media (min-width: 0px) {
+	.displayList h1 {
+		margin-left: 5vw;
+		margin-right: 20px;
+		margin-top:0px;
+	}
+	.displayList h2 {
+		width:80vw;
+		margin-left: 10vw;
+	}
+	.displayList p{
+		width: 80vw;
+		margin-top: calc(0px + 0vh);
+		margin-bottom: calc(6px + 0.4vh);
+		margin-left: 10vw;
+	} 
+}
+
+@media (min-width: 992px) {
+	.displayList h1 {
+		margin-left: 5vw;
+		margin-right: 20px;
+		margin-top: calc(30px + 2vh);
+	}
+	.displayList h2 {
+		width:50vw;
+		margin-left: 20vw;
+	}
+	.displayList p{
+		width: 50vw;
+		margin-top: calc(0px + 0vh);
+		margin-bottom: calc(6px + 0.4vh);
+		margin-left: 25vw;
+	} 
+}
+
 
 .whiteList {
-	background: rgba(245, 250, 255, 0.7);
+	background: rgba(225, 230, 235, 1);
 	color: #454545;
 }
 .brownList {
@@ -555,6 +561,13 @@ body {
 .brownList h1, .blackList h1 {
 	color: #fff;
 }
+.twoItem{
+	margin-left: 10%;
+	width: 80%;
+	font-size: 18px;
+	line-height: 24px;
+}
+
 
 
 .detail-image-mid{
@@ -576,8 +589,8 @@ body {
 	.detail-image-small{
         margin-top: 10px;
         margin-bottom: 10px;
-		margin-left: 30%;
-        width: 40%;
+		margin-left: 25%;
+        width: 50%;
     }
 }
 
@@ -591,7 +604,7 @@ body {
 	.detail-image-small{
         margin-top: 20px;
         margin-bottom: 20px;
-        margin-left: 36%;
-        width: 28%;
+        margin-left: 35%;
+        width: 30%;
     }
 }
