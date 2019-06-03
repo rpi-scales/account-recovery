@@ -3,8 +3,8 @@
 <head>
 	<title>DApp Account Recovery</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Personal Website">
-	<meta name="keywords" content="yanlin zhu" />
+	<meta name="description" content="DApp Account Recovery">
+	<meta name="keywords" content="DApp Account Recovery" />
 	<meta name="author" content="yanlin zhu" />
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="github-page-sources/style.css">
@@ -25,7 +25,7 @@
 		<a id="but2" class="button topnav"; title="Introduction"; href="#proposal";>Proposal</a>
 		<a id="but3" class="button topnav"; title="Proposal"; href="#limitation";>Limitation</a>
 		</div>
-		<a href="https://github.com/kirbisity/scales_project" id="but4" class="button topnav projects wp5 animated slideInUp">View On Github</a>
+		<a href="https://github.com/rpi-scales/account-recovery" id="but4" class="button topnav projects wp5 animated slideInUp">View On Github</a>
         
         <a id="topmenushow" class="button topnav navmenu"; onclick="showTopNav()" title="Show menu";>&#9776</a>
     </div>
@@ -65,11 +65,20 @@
 			<br>
 			<div class="oneItem">
 				<h2>Motivation</h2>
-				<p>In a decentralized application (DApp), there is no authority to
-	be in charge of a lost key situation like a bank account, email or
-	social network app. Therefore, a lost key is lost forever. In
-	Bitcoin, it is estimated four million Bitcoins have vanished
-	forever due to lost keys</p>
+				<p>One of blockchain's main feature is decentralization. Decentralization means that the action happening on a blockchain network is verified by all active users instead of a single official party. 
+				Our motivation in this project is that decentralization would mean that account recovery is impossible. In centralized systems, you can contact the administrator to prove your identity to them. 
+
+We developed a method to prove one's identity to the set of previous trade partners without revealing one's sensitive information like mobile number, address or SSN like what you would do when you recover a bank account. 
+
+For each voter, the user will send the information he still remembers, like what he bought or what color is the product. The trade partners can then vote if the information is correct. 
+
+The vote is backed by an encryption step offline, so only the correct voter can read his version of the proof. Because these information is only known to these two people and not available on the public ledger, we believe it would not cause additional privacy leak. 
+
+So far, we've developed a prototype program on Hyperledger Composer with a spam filter to separate good requests from spam requests and a voting mechanism to finally decide if the request is authentic or not. 
+
+What we are working on is to make the system less vulnerable to attacks and make it more practical. So possible directions for future work can be finding ways to identify accounts belong to the same person. This is for solving the attack by doing microtransactions with different accounts to increase one's influence in the voting result. Another direction is development on Ethereum, as Ethereum is a more suitable platform for its generalized applications and built-in cryptocurrency.
+
+</p>
 				<p>There have been existing works on recovery using predefined
 	<a href = "https://search.proquest.com/docview/2021240449?pq-origsite=gscholar">emergency contacts</a> and <a href="https://eprint.iacr.org/2019/017.pdf">advanced secret sharing</a>. However,
 	these solutions requires the user be forward thinking.</p>
@@ -102,7 +111,6 @@ normal user and trade partners</h2>
 			<p>Each trade partner knows a piece of the owner’s information. But only the owner is supposed to know everything.</p>
 			<h2>The user will write down the private information for each prev trade partner encrypted with the partner’s pubkey. The trade partners can then vote if the information is detailed and truthful<h2>
 			<img class="detail-image-mid" src="github-page-sources/images/spam1.jpg" alt="scales-spam-1.JPG">
-<p>•_• </p>
 		</div>
 		<div class="oneItem">
 			<h2>We developed the demo on hyperledger composer</h2>
@@ -134,69 +142,7 @@ normal user and trade partners</h2>
 		<div id="footerText">
 			<p>SCALES Project</p>
 		</div>
-        <table id = "footerpc" class = "footer-table" width="100%">
-            <tr>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Web</th>
-                <th>Location</th>
-            </tr>
-            <tr>
-                <td width="1000px">zhuy11@rpi.edu</td>
-                <td width="1000px">+1 (518)-248-9714</td>
-                <td width="1000px"><a href="http://www.yanlinz.com">www.yanlinz.com</a></td>
-                <td width="1000px">Troy, NY, USA</td>
-            </tr>
-            <tr>
-                <td width="1000px">zhuyanlin96@gmail.com</td>
-                <td width="1000px"></td>
-                <td width="1000px"><a onclick="openlink(linkgithub)">github.com/kirbisity</a></td>
-                <td width="1000px">Shanghai, China</td>
-            </tr>
-            <tr>
-                <td width="1000px">staraliform@gmail.com</td>
-                <td width="1000px"></td>
-                <td width="1000px"><a onclick="openlink(linklinkedin)">linkedin.com/in/zhu-yanlin</a></td>
-                <td width="1000px"></td>
-            </tr>
-        </table>
 
-        <table id = "footermb0" class = "footer-table" width="100%">
-            <tr>
-                <th>Email</th>
-                <th>Phone</th>
-            </tr>
-            <tr>
-                <td width="1000px">zhuy11@rpi.edu</td>
-                <td width="1000px">+1 (518)-248-9714</td>
-            </tr>
-            <tr>
-                <td width="1000px">zhuyanlin96@gmail.com</td>
-                <td width="1000px"></td>
-            </tr>
-            <tr>
-                <td width="1000px">staraliform@gmail.com</td>
-                <td width="1000px"></td>
-            </tr>
-        </table>
-        <table id = "footermb1" class = "footer-table" width="100%">
-            <tr>
-                <th>Web</th>
-                <th>Location</th>
-            </tr>
-            <tr>
-                <td width="1000px"><a href="http://www.yanlinz.com">www.yanlinz.com</a></td>
-                <td width="1000px">Troy, NY, USA</td>
-            </tr>
-            <tr>
-                <td width="1000px"><a onclick="openlink(linkgithub)">github.com/kirbisity</a></td>
-                <td width="1000px">Shanghai, China</td>
-            </tr>
-            <tr>
-                <td width="1000px"><a onclick="openlink(linklinkedin)">linkedin.com/in/zhu-yanlin</a></td>
-                <td width="1000px"></td>
-            </tr>
-        </table>
 		<div id="footerText">
 			<p>Designed and built by Yanlin Zhu 2019</p>
 		</div>
