@@ -32,7 +32,7 @@ $('.button').on('click', function(event) {
 
 let time = 0;
 let time2 = 0;
-let timeCount = setInterval(myTimer, 50);
+let timeCount = setInterval(myTimer, 100);
 //let colors = [[42, 187, 252], [54, 131, 245]]
 let colors = [[42, 187, 252], [44, 111, 215]]
 //let colors = [[180, 180, 180], [160, 160, 160]];
@@ -48,54 +48,14 @@ function graphicComponents() {
 
 function Globals() {
     this.hour = new Date().getHours();
-    this.colortimeA = [[0,0,5], [0,0,5], [0,0,5], [0,0,5], [0,10,15], [10,35,55], [20,55,85], [22,58,90], [25,59,97], [29,60,111], [30,61,117], [31,62,119], [32,63,121], [33,63,119], [34,63,117], [35,63,115], [36,63,105], [38,63,95], [40,63,90], [20,30,61], [0,10,25], [0,5,15], [
-        0,0,5], [
-        0,0,5]];
-    this.colortimeB = [[0,5,25], [0,5,25], [0,5,25], [0,5,25], [0,15,30], [45,35,40], [85,55,50], [95,145,210], [106,146,211], [107,147,212], [108,148,213], [109,149,214], [110,150,215], [111,149,211], [114,148,207], [118,147,195], [124,144,170], [145,142,135], [169,140,95], [100,80,60], [15,10,45], [0,10,35], [0,5,25], [0,5,25]];
-
-
+    this.colortimeA = [];
+    this.colortimeB = [];
     /**
      * set sky color according to current time
      * @param {int} hour - the time of the day. Used to calculate the color based on four base colors matching the current time.
      */
     this.changeSkyColor = function (hour) {
-        let colorsA = this.colortimeA[hour];
-        let colorsB = this.colortimeB[hour];
 
-
-        /* The old version, using four pivot time to give the color of the sky at the current time, doesn't look good
-        if (hour < 6) {
-            for (let i=0; i < 3; i++) {
-                let ratio = hour/6; // ratio of 6am color
-                colorsA.push(Math.round(this.colortimeA[0][i] * ratio + this.colortimeA[3][i] * (1 - ratio)));
-                colorsB.push(Math.round(this.colortimeB[0][i] * ratio + this.colortimeB[3][i] * (1 - ratio)));
-            }
-        } else if (hour < 12) {
-            for (let i=0; i < 3; i++) {
-                let ratio = (hour-6)/6; // ratio of 12am color
-                colorsA.push(Math.round(this.colortimeA[1][i] * ratio + this.colortimeA[0][i] * (1 - ratio)));
-                colorsB.push(Math.round(this.colortimeB[1][i] * ratio + this.colortimeB[0][i] * (1 - ratio)));
-            }
-        } else if (hour < 18) {
-            for (let i=0; i < 3; i++) {
-                let ratio = (hour-12)/6; // ratio of 18am color
-                colorsA.push(Math.round(this.colortimeA[2][i] * ratio + this.colortimeA[1][i] * (1 - ratio)));
-                colorsB.push(Math.round(this.colortimeB[2][i] * ratio + this.colortimeB[1][i] * (1 - ratio)));
-            }
-        } else if (hour < 24) {
-            for (let i=0; i < 3; i++) {
-                let ratio = (hour-18)/6; // ratio of 0am color
-                colorsA.push(Math.round(this.colortimeA[3][i] * ratio + this.colortimeA[2][i] * (1 - ratio)));
-                colorsB.push(Math.round(this.colortimeB[3][i] * ratio + this.colortimeB[2][i] * (1 - ratio)));
-            }
-        } else {
-
-        }
-        */
-        let gradBeg = 'rgba(' + colorsA[0].toString() + ', ' + colorsA[1].toString() + ', ' + colorsA[2].toString() + ', 1)';
-        let gradEnd = 'rgba(' + colorsB[0].toString() + ', ' + colorsB[1].toString() + ', ' + colorsB[2].toString() + ', 1)';
-        let gradient = 'linear-gradient(' + gradBeg + ', ' + gradEnd + ')';
-        document.getElementById('intro0').style.background = gradient;
     };
 
     /**
@@ -204,8 +164,6 @@ function GraphicCloud() {
 };
 
 let gcomp = new graphicComponents();
-let gclouds = new GraphicCloud();
-gclouds.randomize();
 
 let subheaderfull = "Introduction";
 let subheadertext = "";
@@ -218,55 +176,21 @@ let global = new Globals();
  */
 function myTimer() {
     time += 1
-
-    /*
-    colorA += cStepA;
-    colorB += cStepB;
-
-    if (colorA >= 80) {
-        cStepA = -1
-    } else if (colorA <= 0) {
-        cStepA = 1
+    if (subheaderplace < subheaderfull.length){
+        subheadertext += subheaderfull.charAt(subheaderplace);
+        subheaderplace+=1;
+        document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "&nbsp */";
     }
-    if (colorB >= 60) {
-        cStepB = -1
-    } else if (colorB <= 0) {
-        cStepB = 1
+
+    if (time%8 < 4) {
+        document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "| */";
     }
-    let colorsA = [0, 0, 0]
-    let colorsB = [0, 0, 0]
-    colorsA[0] = Math.round(colors[0][0] + colorA)
-    colorsA[1] = Math.round(colors[0][1] + colorA)
-    colorsA[2] = Math.round(colors[0][2] - 2 * colorA)
-    colorsA[2] = colors[0][2]
-
-    colorsB[0] = Math.round(colors[1][0] - 2 * colorB)
-    colorsB[1] = Math.round(colors[1][1] + colorB)
-    colorsB[2] = Math.round(colors[1][2] + colorB)
-
-    let gradBeg = 'rgba(' + colorsA[0].toString() + ', ' + colorsA[1].toString() + ', ' + colorsA[2].toString() + ', 0.7)'
-    let gradEnd = 'rgba(' + colorsB[0].toString() + ', ' + colorsB[1].toString() + ', ' + colorsB[2].toString() + ', 0.5)'
-    let gradient = 'linear-gradient(' + gradBeg + ', ' + gradEnd + ')'
-    document.getElementById('intro-overlay').style.background = gradient
-    */
-    if (time%2 == 1) {
-        if (subheaderplace < subheaderfull.length){
-            subheadertext += subheaderfull.charAt(subheaderplace);
-            subheaderplace+=1;
-            document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "&nbsp */";
-        }
-
-        if (time%10 < 5) {
-            document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "| */";
-        }
-        else {
-            document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "&nbsp */";
-        }
+    else {
+        document.getElementById("indexsubheader").innerHTML = "/* " +subheadertext + "&nbsp */";
     }
     if (time%600 == 1) {
         global.refreshClock();
     }
-    gclouds.drift();
 }
 
 let pos = 0;
@@ -292,28 +216,26 @@ $(window).scroll(function (event) {
     scroll = window.pageYOffset;
     docH = $(document).height();
     let pct = scroll/(docH-pageH-150);
-    gclouds.set();
 
     document.getElementById("pBarL").style.width = Math.round(pct*50).toString() +"%";
     document.getElementById("pBarR").style.width = Math.round(pct*50).toString() +"%";
     if (scroll <= 1080) {
         document.getElementById("intro-content").style.top = Math.round(scroll/4).toString() + "px";
         document.getElementById("intro-content").style.opacity = Math.max(0, 1-scroll*0.001).toString();
-        if (pos != 0) {
+        if (pos != 0 && pageW > 992) {
             pos = 0
             subheaderplace = 0;
             subheadertext = "";
-            gclouds.show();
 			document.getElementById("topMenuMain").style.height = "0px";
             document.getElementById("headline").style.top = "-50px";
-
+			document.getElementById("but4").style.top = "0px";
         }
-    } else if (scroll > 1080) {
+    } else if (scroll > 1080 && pageW > 992) {
         if (pos == 0) {
             pos = 1;
-			gclouds.hide();
 			document.getElementById("topMenuMain").style.height = "70px";
             document.getElementById("headline").style.top = "20px";
+			document.getElementById("but4").style.top = "-70px";
         }
     }
 });
@@ -326,10 +248,27 @@ document.addEventListener('mousemove', mouseMoves);
  @param {event} event - the event
  */
 function mouseMoves(event) {
-    if (Math.abs(event.clientX - mouseX) > 100 || Math.abs(event.clientY - mouseY) > 100) {
-        gclouds.reCenter(event.clientX - mouseX, event.clientY - mouseY);
-    }
     mouseX = event.clientX;
     mouseY = event.clientY;
-    gclouds.set();
+}
+
+function displayfeature(type, init) {
+	if (type == 1 && init == 1) {
+		document.getElementById("f1txt").innerText = "To prevent a single point of failure. We designed the solution avoided the involvement of any third party, as user-submitted transactions drive the account recovery process. And the decision-making process is also decentralized.";
+	}
+	if (type == 1 && init == 0) {
+		document.getElementById("f1txt").innerText = "The solution avoided using any third party action in the account recovery process.";
+	}
+	if (type == 2 && init == 1) {
+		document.getElementById("f2txt").innerText = "Compared to existing work, the recovery process does not require the user to take any action before the recovery, which is significant as some users might not be forward-thinking to prepare for losing an account in the future. ";
+	}
+	if (type == 2 && init == 0) {
+		document.getElementById("f2txt").innerText = "Requires no additional steps before the account was lost.";
+	} 
+	if (type == 3 && init == 1) {
+		document.getElementById("f3txt").innerText = "We did not use evidence like email or the social security number like in centralized applications. The evidence will be transaction details that the user still remember. The trade partners can then vote individually if this corresponding information is correct. ";
+	} 
+	if (type == 3 && init == 0) {
+		document.getElementById("f3txt").innerText = "The verification is based on the information asymmetry between a random user and previous trade partners.";
+	} 
 }

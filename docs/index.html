@@ -33,22 +33,24 @@
 
 	<div id="intro0" class="intro">
         <div id="intro-overlay">
-            <div id = "g-sun" class = "graphics-element"></div>
-            <div id = "g-cloud0" class = "graphics-element cloud"></div>
-            <div id = "g-cloud1" class = "graphics-element cloud"></div>
-            <div id = "g-cloud2" class = "graphics-element cloud"></div>
-            <div id = "g-cloud3" class = "graphics-element cloud"></div>
-            <div id = "g-cloud4" class = "graphics-element cloud"></div>
-            <div id = "g-cloud5" class = "graphics-element cloud"></div>
-            <div id = "g-cloud6" class = "graphics-element cloud"></div>
-            <div id = "g-cloud7" class = "graphics-element cloud"></div>
-            <div id = "g-cloud8" class = "graphics-element cloud"></div>
-            <div id = "g-cloud9" class = "graphics-element cloud"></div>
-
             <div id="intro-content">
                 <h1 ></strong>Account Recovery in DApps by Voting</h1>
-                <p id="indexsubheader" class="subtitle">Introduction</p>
-				<img class="detail-image-small" src="github-page-sources/images/flowchart.JPG" alt="scales-spam-1.JPG">
+                <h3 id="indexsubheader" class="subtitle">Introduction</h3>
+				<p id="motivation">Decentralized applications have stronger security and fault tolerance. Our motivation in this project is that decentralization would also mean that account recovery is impossible because you cannot contact the administrator to prove your identity to them. </p>
+				<div id="features">
+					<div class="feature" id="f1">
+						<h4 onmouseenter="displayfeature(1, 1)"; onmouseout="displayfeature(1, 0)";>&#9675 Decentralized</h4>
+						<p id="f1txt">The solution avoided using any third party action in the account recovery process.<p>
+					</div>
+					<div class="feature" id="f2">
+						<h4 onmouseenter="displayfeature(2, 1)"; onmouseout="displayfeature(2, 0)";>&#9675 Hindsight</h4>
+						<p id="f2txt">Requires no additional steps before the account was lost.<p>
+					</div>
+					<div class="feature" id="f3">
+						<h4 onmouseenter="displayfeature(3, 1)"; onmouseout="displayfeature(3, 0)";>&#9675 Privacy</h4>
+						<p id="f3txt">The verification is based on the information asymmetry between a random user and previous trade partners.<p>
+					</div>
+				</div>
             </div>
         </div>
 		
@@ -64,10 +66,8 @@
 			<h1>Introduction</h1>
 			<br>
 			<div class="oneItem">
-				<h2>Motivation</h2>
-				<p>One of blockchain's main feature is decentralization. Decentralization means that the action happening on a blockchain network is verified by all active users instead of a single official party. 
-				Our motivation in this project is that decentralization would mean that account recovery is impossible. In centralized systems, you can contact the administrator to prove your identity to them. 
-
+				<h2>Method</h2>
+				<p>
 We developed a method to prove one's identity to the set of previous trade partners without revealing one's sensitive information like mobile number, address or SSN like what you would do when you recover a bank account. 
 
 For each voter, the user will send the information he still remembers, like what he bought or what color is the product. The trade partners can then vote if the information is correct. 
@@ -82,18 +82,6 @@ What we are working on is to make the system less vulnerable to attacks and make
 				<p>There have been existing works on recovery using predefined
 	<a href = "https://search.proquest.com/docview/2021240449?pq-origsite=gscholar">emergency contacts</a> and <a href="https://eprint.iacr.org/2019/017.pdf">advanced secret sharing</a>. However,
 	these solutions requires the user be forward thinking.</p>
-			</div>
-			<div class="oneItem">
-				<h2>Method</h2>
-				<p>We propose a method to use voting by previous transaction
-	partners to verify user identity. The major advantage of this new
-	solution is the ability to set up the recovery after one realizes
-	they lost a key.</p>
-				<p>We propose a method to use voting by previous transaction
-	partners to verify user identity. The major advantage of this new
-	solution is the ability to set up the recovery after one realizes
-	they lost a key.</p>
-				<p></p>
 			</div>
 			
 			
@@ -111,6 +99,7 @@ normal user and trade partners</h2>
 			<p>Each trade partner knows a piece of the owner’s information. But only the owner is supposed to know everything.</p>
 			<h2>The user will write down the private information for each prev trade partner encrypted with the partner’s pubkey. The trade partners can then vote if the information is detailed and truthful<h2>
 			<img class="detail-image-mid" src="github-page-sources/images/spam1.jpg" alt="scales-spam-1.JPG">
+			<img class="detail-image-small" src="github-page-sources/images/flowchart.JPG" alt="scales-spam-1.JPG">
 		</div>
 		<div class="oneItem">
 			<h2>We developed the demo on hyperledger composer</h2>

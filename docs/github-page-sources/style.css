@@ -57,29 +57,6 @@ body {
     z-index: 33;
 }
 
-.button.topnav.projects{
-    position: absolute;
-    color: #FFF;
-    background: transparent;
-    border: 2px solid #FFF;
-    border-radius: 4px;
-    padding: 0px 0px;
-	margin-top:10px;
-    font-weight: normal;
-    display: inline-block;
-    text-decoration: none;
-	font-size: 16px;
-	line-height:50px;
-    width: 210px;
-    height: 50px;
-}
-
-.button.topnav.projects:hover{
-	color: #2cecda;
-    border: 2px solid #2cecda;
-}
-
-
 .button.topnav {
     text-align: center;
     text-decoration: none;
@@ -111,6 +88,31 @@ body {
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
+}
+
+.button.topnav.projects{
+    position: absolute;
+    color: #676767;
+    background: #EFEFEF;
+    border: 2px solid #676767;
+    border-radius: 4px;
+    padding: 0px 0px;
+	margin-top:10px;
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: none;
+	font-size: 16px;
+	line-height:50px;
+    width: 210px;
+    height: 50px;
+	text-shadow: none;
+	font-weight: bold;
+}
+
+.button.topnav.projects:hover{
+	background: #FFF;
+    border: 2px solid #111;
+    color: #111;
 }
 
 .button:hover {
@@ -164,8 +166,8 @@ body {
 }
 
 #topmenushow{
-    top: 14px;
-    left: calc(100% - 80px);
+    top: 10px;
+    left: 10px;
     display: none;
 }
 
@@ -181,19 +183,16 @@ body {
         display: none;
     }
     #but1 {
-        left: calc(100% - 200px);
-        top:50px;
+        left: 0px;
+        top:110px;
     }
     #but2 {
-        left: calc(100% - 200px);
-        top:100px;
+        left: 0px;
+        top:160px;
     }
     #but3 {
-        left: calc(100% - 200px);
-        top:150px;
-    }
-    #but4 {
-        left: calc(50% - 105px);
+        left: 0px;
+        top:210px;
     }
 }
 
@@ -201,12 +200,7 @@ body {
     width: 100%;
     height: 100%;
     min-height: 100%;
-    background: linear-gradient(rgba(32, 63, 121, 1), rgba(110, 150, 215, 1));
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-color: #777;
+    background: #EFEFEF;
     z-index: 3;
 }
 
@@ -230,18 +224,9 @@ body {
 #intro0 h1 {
     text-align: center;
     text-transform: uppercase;
-    line-height: 80px;
-    font-size: 50px;
     font-weight: 300;
-    color:#FFF;
-    letter-spacing: 3px;
 }
 
-@media (max-width: 480px) {
-    #intro0 h1 {
-        font-size: 30px;
-    }
-}
 
 
 #intro0 h2 {
@@ -251,16 +236,7 @@ body {
     line-height: 50px;
     font-size: 24px;
     font-weight: 300;
-    color:#FFF;
     letter-spacing: 3px;
-}
-
-#intro0 p.subtitle {
-    text-align: center;
-    text-transform: uppercase;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 18px;
-    color: #ddd;
 }
 
 #intro-content {
@@ -274,6 +250,154 @@ body {
 
 #intro-content h1 {
     font-size: 30px;
+	line-height: 40px;
+    margin-bottom: 60px;
+    letter-spacing: 3px;
+}
+#intro-content h3 {
+	text-align: center;
+	font-weight: normal;
+	font-family: 'IBM Plex Mono', monospace;
+	margin-left: 10%;
+	width: 80%;
+}
+#intro-content p {
+	font-weight: 300;
+}
+
+#features {
+	margin-top: 100px;
+}
+
+.feature {
+	background: transparent;
+	position: absolute;
+	text-align: center;
+}
+.feature h4 {
+    margin-bottom: 10px;
+	font-weight: 300;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+
+@media (min-width: 0px) {
+	#intro0 h1 {
+        font-size: 16px;
+    }
+	#intro-content p {
+		font-size: 10px;
+		line-height: 14px;
+		letter-spacing: 1px;
+	}
+	.feature h4 {
+		font-size: 14px;
+		line-height: 20px;
+		letter-spacing: 2px;
+	}
+	#intro-content h3 {
+		font-size: 16px;
+	}
+	#motivation {
+		margin-top: 20px;
+		margin-left: 10%;
+		width: 80%;
+	}
+	.feature {
+		width: 90%;
+		height: 200px;
+	}
+	#f1 {
+		top: 520px;
+		left: 5%;
+	}
+	#f2 {
+		top: 700px;
+		left: 5%;
+	}
+	#f3 {
+		top: 880px;
+		left: 5%;
+	}
+}
+@media (min-width: 480px) {
+	#intro0 h1 {
+        font-size: 20px;
+    }
+	#intro-content p {
+		font-size: 16px;
+		line-height: 24px;
+		letter-spacing: 1px;
+	}
+	.feature h4 {
+		font-size: 16px;
+		line-height: 30px;
+		letter-spacing: 2px;
+	}
+	#intro-content h3 {
+		font-size: 20px;
+	}
+	#motivation {
+		margin-top: 50px;
+		margin-left: calc(50% - 230px);
+		width: 460px;
+	}
+	.feature {
+		width: 180px;
+		height: 200px;
+	}
+	#f1 {
+		top: 500px;
+		left: calc(17% - 90px);
+	}
+	#f2 {
+		top: 500px;
+		left: calc(50% - 90px);
+	}
+	#f3 {
+		top: 500px;
+		left: calc(83% - 90px);
+	}
+}
+@media (min-width: 992px) {
+	#intro0 h1 {
+        font-size: 30px;
+    }
+	#intro-content p {
+		font-size: 20px;
+		line-height: 30px;
+		letter-spacing: 1px;
+	}
+	.feature h4 {
+		font-size: 24px;
+		line-height: 36px;
+		letter-spacing: 2px;
+	}
+	#intro-content h3 {
+		font-size: 24px;
+	}
+	#motivation {
+		margin-top: 100px;
+		margin-left: calc(50% - 400px);
+		width: 800px;
+	}
+	.feature {
+		width: 300px;
+		height: 200px;
+	}
+	#f1 {
+		top: 540px;
+		left: calc(17% - 150px);
+	}
+	#f2 {
+		top: 540px;
+		left: calc(50% - 150px);
+	}
+	#f3 {
+		top: 540px;
+		left: calc(83% - 150px);
+	}
 }
 
 
@@ -303,18 +427,13 @@ body {
 
 
 
-
-
-
-
-
 #footer{
     margin-top:0px;
     bottom: 0px;
     position: relative;
     text-decoration: none;
     width: 100%;
-    height: 350px;
+    height: 200px;
     text-align:center;
     background: #5068c2;
     z-index: 3;
@@ -381,58 +500,17 @@ body {
 }
 
 
-
-.footer-table td{
-    text-align: center;
-}
-.footer-table th{
-    text-align: center;
-}
-.footer-table a{
-    text-decoration: none;
-    color: #fefefe;
-}
-.footer-table a:hover{
-    text-decoration: none;
-    color: #bef1ec;
-}
-
-
 @media (min-width: 0px) {
     #footerText p{
         font-size: 12px;
-    }
-    .footer-table td{
-        line-height: 16px;
-        font-size: 8px;
-    }
-    .footer-table th{
-        line-height: 20px;
-        font-size: 10px;
     }
 }
 @media (min-width: 480px) {
     #footerText p{
         font-size: 16px;
     }
-    .footer-table td{
-        line-height: 3.226vw;
-        font-size: 1.613vw;
-    }
-    .footer-table th{
-        line-height: 4.033vw;
-        font-size: 2.016vw;
-    }
 }
 @media (min-width: 992px) {
-    .footer-table td{
-        line-height: 32px;
-        font-size: 16px;
-    }
-    .footer-table th{
-        line-height: 40px;
-        font-size: 20px;
-    }
 }
 
 
@@ -443,22 +521,9 @@ body {
     display: none;
 }
 
-.cloud{
-    opacity: 0.4;
-    background: url('images/cloud0.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    position: fixed;
-    top: 100px;
-    left: 300px;
-    width: 500px;
-    height: 300px;
-    z-index: 0;
-}
-
 .displayList {
 	color: #000;
-	line-height: calc(18px + 1vh);
+	line-height: 18px;
 	position:relative;
     padding-top: 6vh;
     padding-bottom: 9vh;
@@ -468,7 +533,6 @@ body {
 
 .displayList h1 {
 	color: #555;
-    font-size: calc(24px + 1vh);
     margin-left: 5vw;
 	margin-right: 20px;
 	text-shadow: 0 1px 0 #fff,
@@ -479,25 +543,22 @@ body {
 .displayList h2 {
 	padding-top: 10px;
 	width:50vw;
-    font-size: calc(14px + 1vh);
     margin-left: 20vw;
 	text-shadow: 0px 1px 2px rgba(100,100,100,0.2);
 }
 
 .displayList h3 {
 	color: #555;
-    font-size: calc(24px + 1vh);
+    font-size: 24px;
     text-align: center;
 	text-shadow: 0 1px 0 #fff,
 				 0 0px 20px rgba(100,100,100,0.3);
-				 
 }
 
 .displayList p{
 	width: 50vw;
-    font-size: calc(12px + 0.8vh);
-    margin-top: calc(0px + 0vh);
-    margin-bottom: calc(6px + 0.4vh);
+    margin-top: 0px;
+    margin-bottom: 6px;
 	margin-left: 25vw;
 } 
 
@@ -511,36 +572,46 @@ body {
 
 @media (min-width: 0px) {
 	.displayList h1 {
+		font-size: 24px;
 		margin-left: 5vw;
 		margin-right: 20px;
 		margin-top:0px;
 	}
 	.displayList h2 {
+		font-size: 14px;
+		line-height: 20px;
 		width:80vw;
 		margin-left: 10vw;
 	}
 	.displayList p{
+        font-size: 12px;
+        line-height: 16x;
 		width: 80vw;
-		margin-top: calc(0px + 0vh);
-		margin-bottom: calc(6px + 0.4vh);
+		margin-top: 0px;
+		margin-bottom: 6px;
 		margin-left: 10vw;
 	} 
 }
 
 @media (min-width: 992px) {
 	.displayList h1 {
+		font-size: 30px;
 		margin-left: 5vw;
 		margin-right: 20px;
-		margin-top: calc(30px + 2vh);
+		margin-top: 30px;
 	}
 	.displayList h2 {
+		font-size: 20px;
+		line-height: 26px;
 		width:50vw;
 		margin-left: 20vw;
 	}
 	.displayList p{
+        font-size: 16px;
+        line-height: 24px;
 		width: 50vw;
-		margin-top: calc(0px + 0vh);
-		margin-bottom: calc(6px + 0.4vh);
+		margin-top: 0px;
+		margin-bottom: 6px;
 		margin-left: 25vw;
 	} 
 }
