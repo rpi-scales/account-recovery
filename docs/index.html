@@ -76,12 +76,10 @@ The vote is backed by an encryption step offline, so only the correct voter can 
 
 So far, we've developed a prototype program on Hyperledger Composer with a spam filter to separate good requests from spam requests and a voting mechanism to finally decide if the request is authentic or not. 
 
-What we are working on is to make the system less vulnerable to attacks and make it more practical. So possible directions for future work can be finding ways to identify accounts belong to the same person. This is for solving the attack by doing microtransactions with different accounts to increase one's influence in the voting result. Another direction is development on Ethereum, as Ethereum is a more suitable platform for its generalized applications and built-in cryptocurrency.
-
-</p>
+				</p>
 				<p>There have been existing works on recovery using predefined
 	<a href = "https://search.proquest.com/docview/2021240449?pq-origsite=gscholar">emergency contacts</a> and <a href="https://eprint.iacr.org/2019/017.pdf">advanced secret sharing</a>. However,
-	these solutions requires the user be forward thinking.</p>
+	these solutions requires the user be forward thinking. Compared to existing work, the recovery process does not require the user to take any action before the recovery, which is significant as some users might not be forward-thinking to prepare for losing an account in the future.</p>
 			</div>
 			
 			
@@ -99,7 +97,7 @@ normal user and trade partners</h2>
 			<p>Each trade partner knows a piece of the owner’s information. But only the owner is supposed to know everything.</p>
 			<h2>The user will write down the private information for each prev trade partner encrypted with the partner’s pubkey. The trade partners can then vote if the information is detailed and truthful<h2>
 			<img class="detail-image-mid" src="github-page-sources/images/spam1.jpg" alt="scales-spam-1.JPG">
-			<img class="detail-image-small" src="github-page-sources/images/flowchart.JPG" alt="scales-spam-1.JPG">
+			<img class="detail-image-mid" src="github-page-sources/images/flowchart.JPG" alt="scales-spam-1.JPG">
 		</div>
 		<div class="oneItem">
 			<h2>We developed the demo on hyperledger composer</h2>
@@ -114,7 +112,7 @@ normal user and trade partners</h2>
 		
 	</section>
 	
-			<section id="limitation" class="displayList blackList">
+	<section id="limitation" class="displayList blackList">
 		<h1>Limitation</h1>
 		<br>
 		<div class="oneItem">
@@ -123,6 +121,14 @@ normal user and trade partners</h2>
 			<h2>Social engineering</h2>
 			<p>The attacker may obtain private information about a user from cyberstalking or phishing scams. With enough data, the attacker may be able to convince the voters that he/she is the real owner of the account. </p>
 			<p></p>
+	</section>
+
+	<section id="futurework" class="displayList brownList">
+		<h1>Future work</h1>
+		<br>
+		<div class="oneItem">
+			<p>What we are working on is to make the system less vulnerable to attacks and make it more practical. So possible directions for future work can be finding ways to identify accounts belong to the same person. This is for solving the attack by doing microtransactions with different accounts to increase one's influence in the voting result. Another direction is development on Ethereum, as Ethereum is a more suitable platform for its generalized applications and built-in cryptocurrency.
+			</p>
 	</section>
 
 
