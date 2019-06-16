@@ -44,6 +44,8 @@ participant User identified by userId {
     o Integer aCoin
     o Integer iteration
     o Integer reputation
+    o Integer recovered
+    --> User[] voters
 }
 transaction Trade {
     --> Commodity commodity
@@ -90,6 +92,11 @@ asset Poll identified by pollID {
     --> User host
 }
 
+transaction SendMoney {
+    o Integer amount
+    --> User sender
+    --> User receiver
+}
 
 transaction Recovery {
     o String proposalName
@@ -97,7 +104,6 @@ transaction Recovery {
     o String detail
     o String initiator
     o String oldAccount
-    --> User[] voters
 }
 
 transaction EndRecovery {

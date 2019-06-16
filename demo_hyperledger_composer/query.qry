@@ -57,3 +57,14 @@ query selectProposalsbyOldAccount {
       SELECT org.example.basic.Proposal
   		  WHERE (oldAccount == _$ouID)
 }
+
+
+/**
+ * Query file for proposal with oldaccount id
+ */
+query prevTransactions {
+  description: "Find all previous transactions"
+  statement:
+      SELECT org.hyperledger.composer.system.HistorianRecord 
+          WHERE (transactionType == 'org.example.basic.SendMoney')
+}

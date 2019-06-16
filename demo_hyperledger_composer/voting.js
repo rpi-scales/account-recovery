@@ -1,3 +1,46 @@
+/**
+ * Take in a list of voters. Create a poll by minting an identical VoteToken for each user 
+ * to invite each of them. Locks the owner from setting up another poll.
+ * @param {org.example.basic.SendMoney} createPoll
+ * @transaction
+ */
+async function sendMoney(sendMoney) {
+    if (sendMoney.sender.recovered == 1){
+      throw new Error("This account has been revoked!");
+    }
+    if (sendMoney.sender.aCoin < sendMoney.amount){
+        throw new Error('Balance is not enough');
+    }
+    sendMoney.receiver.aCoin += sendMoney.amount;
+    sendMoney.sender.aCoin -= sendMoney.amount;
+    const assetRegistry = await getParticipantRegistry('org.example.basic.User');
+    for(let i=0; i < sendMoney.receiver.voters.length; i++){
+      if(sendMoney.receiver.voters[i].userId != sendMoney.sender.userId && sendMoney.receiver.voters[i].name == sendMoney.sender.name){
+        throw new Error('Multiple accounts for the same sender!');
+      }
+    }
+    let dup = 0;
+    for (let i = 0; i < sendMoney.sender.voters.length; i++){
+        if (sendMoney.receiver.getIdentifier() == sendMoney.sender.voters[i].getIdentifier()) {
+            dup = 1;
+        }
+    }
+    if (!dup) {
+        sendMoney.sender.voters.push(sendMoney.receiver);
+    }
+    dup = 0;
+    for (let i = 0; i < sendMoney.receiver.voters.length; i++){
+        if (sendMoney.sender.getIdentifier() == sendMoney.receiver.voters[i].getIdentifier()) {
+            dup = 1;
+        }
+    }
+    if (!dup) {
+        sendMoney.receiver.voters.push(sendMoney.sender);
+    }
+    await assetRegistry.update(sendMoney.receiver);
+    await assetRegistry.update(sendMoney.sender);
+}
+
 
 /**
  * Take in a list of voters. Create a poll by minting an identical VoteToken for each user 
@@ -7,6 +50,9 @@
  */
 async function createANewPoll(createPoll) {
     // create a new poll
+    if (createPoll.pollOwner.recovered == 1){
+      throw new Error("Poll creator's account has been revoked!");
+    }
     console.log('create new poll');
 
     let nbclassifier = new Naivebayes();
@@ -85,6 +131,9 @@ async function createANewPoll(createPoll) {
 async function voteForPoll(vote) {
 
     //check the deadline
+    if(vote.votetoken.owner.recovered == 1){
+      throw new Error("Vote owner's account has been revoked!");
+    }
     if (vote.votetoken.poll.deadline != '') {
         let ddldate = new Date(vote.votetoken.poll.deadline);
         ddldate = ddldate.getTime();

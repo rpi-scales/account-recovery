@@ -1,0 +1,41 @@
+async function recoverAccount(recovery) {
+
+  	get the Naive Bayes classifier from asset
+    if the statement of situation failed the spam filter, then
+        throw new error
+    end if
+
+    get the correct deadline for the poll
+    create a new Poll asset
+    create a new Proposal asset
+
+    for each of the voters
+        create and assign a voteToken
+    end loop
+    
+}
+
+async function finishRecovery(endRecovery) {
+
+    get the proposal from asset
+    if the proposal does not exist
+        throw error
+    end if
+    get the votetokens already voted
+    if poll is not already finished {
+        collect the votes from voteTokens
+        for all votes
+            count vote
+        end loop
+        get vote answer
+
+        if answer is "True"
+	        transfer balance from old account to new account
+        end if
+    end if
+ }
+
+async function refuseRecovery(vetoRecovery) {
+	delete the associated proposal in asset
+    decrease the reputation of the proposal initiator to 0
+}

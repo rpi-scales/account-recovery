@@ -8,6 +8,18 @@ async function recoverAccount(recovery) {
     const factory = getFactory();
     const namespace = 'org.example.basic';
 
+    /*
+    let vtNames = [];
+    let prevT = await query('prevTransactions');
+  	for (let i = 0; i < prevT.length; i++) {
+  		if (recovery.initiator == prevT[i].participantInvoking.getIdentifier()) {
+
+  		}
+      	console.log(prevT[i].participantInvoking.getIdentifier());
+    }
+    */
+    
+
     let nbclassifier = new Naivebayes();
     const nbcf = await query('selectNBclassifier', { nbcID: "nbc-public" });
     let nbcstr = nbcf[0].jsondata.replace(/'/g, '"');
@@ -64,17 +76,16 @@ async function recoverAccount(recovery) {
     
     // creat votetoken for each voter
     let i = 0;
-    for (;i < recovery.voters.length; i++){
+    for (;i < newproposal.owner.voters.length; i++){
         let vtID = 'VT-' + pname + '-' + i.toString();
         const newVoteToken = factory.newResource(namespace, 'VoteToken', vtID);
         newVoteToken.creator = newpoll.host;
         newVoteToken.poll = newpoll;
         newVoteToken.response = '';
-        newVoteToken.owner = recovery.voters[i];
+        newVoteToken.owner = newproposal.owner.voters[i];
         assetRegistry = await getAssetRegistry(newVoteToken.getFullyQualifiedType());
         await assetRegistry.add(newVoteToken);
     }
-    
 }
 
 /**
@@ -103,11 +114,13 @@ async function finishRecovery(endRecovery) {
 	let dpoll = dpolls[0];
 
     if (dpoll.result == '') {
-        
         const qualifiedVT = votetokens.filter(function (votetoken) {
+          	// console.log(votetoken.owner.iteration);
+          	// console.log(votetoken.creator.recovered);
+          	// console.log(votetoken.owner.getType());
             return (votetoken.poll.getIdentifier() == dpoll.getIdentifier()) && (votetoken.owner.getIdentifier() == dpoll.host.getIdentifier());
+            // return (votetoken.poll.getIdentifier() == dpoll.getIdentifier()) && (votetoken.owner.getIdentifier() == dpoll.host.getIdentifier());
         });
-        
         let answers = {};
         for (let i = 0; i < qualifiedVT.length; i++) {
             let response = qualifiedVT[i].response;
@@ -139,7 +152,6 @@ async function finishRecovery(endRecovery) {
         dpoll.result = maxk;
         assetRegistry = await getAssetRegistry('org.example.basic.Poll');
         await assetRegistry.update(dpoll);
-
         if (maxk == "True") {
         	try {
 	        	const oldus = await query('selectMatchingUser', { uID: initproposal.oldAccount });
@@ -150,6 +162,7 @@ async function finishRecovery(endRecovery) {
 			    newu.aCoin += (oldu.aCoin) * 0.9;
 			    oldu.aCoin = 0;
 			    newu.iteration += 1; 
+          oldu.recovered = 1;
 			    const assetRegistry = await getParticipantRegistry('org.example.basic.User');
 			    await assetRegistry.update(newu);
 			    await assetRegistry.update(oldu);
@@ -158,7 +171,6 @@ async function finishRecovery(endRecovery) {
 	            throw new Error('ERROR: Cannot complete balance transfer');
 	        }
         }
-
     } else {
         throw new Error('Poll already concluded or no voters has voted yet');
     }

@@ -17,6 +17,14 @@ rule EverybodyCanSubmitTransactions {
     action: ALLOW
 }
 
+rule EverybodyCanSendMoney {
+    description: "Allow all users to send money"
+    participant: "org.example.basic.User"
+    operation: CREATE
+    resource: "org.example.basic.SendMoney"
+    action: ALLOW
+}
+
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all users full access to their assets"
     participant(p): "org.example.basic.User"
@@ -50,16 +58,15 @@ rule NetworkAdminSystem {
     action: ALLOW
 }
 
-
-rule OwnerHasFullAccessToThemselves {
+rule EverybodyCanUpdateEverybody {
     description: "Allow all users full access to their assets"
     participant: "org.example.basic.User"
-    operation: ALL
+    operation: UPDATE
     resource: "org.example.basic.User"
     action: ALLOW
 }
 
-rule OwnerHasFullAccessToRSAKey {
+rule EverybodyHasFullAccessToRSAKey {
     description: "Allow all users full access to RSAKey"
     participant: "org.example.basic.User"
     operation: ALL
@@ -67,28 +74,38 @@ rule OwnerHasFullAccessToRSAKey {
     action: ALLOW
 }
 
+rule EverybodyCanCreateVoteToken {
+    description: "Allow all users full access to their votetokens"
+    participant: "org.example.basic.User"
+    operation: CREATE
+    resource: "org.example.basic.VoteToken"
+    action: ALLOW
+}
 
 rule OwnerHasFullAccessToTheirVoteToken {
     description: "Allow all users full access to their votetokens"
-    participant: "org.example.basic.User"
+    participant(p): "org.example.basic.User"
     operation: ALL
-    resource: "org.example.basic.VoteToken"
+    resource(r): "org.example.basic.VoteToken"
+    condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
 
 rule OwnerHasFullAccessToTheirPoll {
     description: "Allow all users full access to their polls"
-    participant: "org.example.basic.User"
+    participant(p): "org.example.basic.User"
     operation: ALL
-    resource: "org.example.basic.Poll"
+    resource(r): "org.example.basic.Poll"
+    condition: (r.host.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
 
 rule OnlyVoteTokenOwnerCanVote {
     description: "Allow votetoken owner to cast a vote"
-    participant: "org.example.basic.User"
+    participant(p): "org.example.basic.User"
     operation: CREATE
-    resource: "org.example.basic.Vote"
+    resource(r): "org.example.basic.Vote"
+    condition: (r.votetoken.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
 
