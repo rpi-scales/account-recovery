@@ -286,7 +286,6 @@ async function refuseRecovery(vetoRecovery) {
                         rewarded_voters.push(i);
                     }
                 }
-                console.log("here1");
                 let reward = fraud.votingReward;
                 // if all voters got it wrong, then reward each voters equally.
                 if (rewarded_voters.length == 0) {
@@ -299,14 +298,12 @@ async function refuseRecovery(vetoRecovery) {
                 else {
                     reward /= rewarded_voters.length;
                 }
-                console.log("here2");
                 for (let i = 0; i < rewarded_voters.length; i++) {
                     const voters = await query('selectMatchingUser', { uID: qualifiedVT[rewarded_voters[i]].voter.getIdentifier() });
                     let voter = voters[0];
                     voter.aCoin += reward;
                     await userRegistry.update(voter);
                 };
-                console.log("here3");
                 for (let i = 0; i < qualifiedVT.length; i++) {
                     await vtRegistry.remove(qualifiedVT[i]);
                 }
@@ -315,7 +312,6 @@ async function refuseRecovery(vetoRecovery) {
                 throw new Error(error);//'ERROR: Cannot transfer voting reward to voters'
             }
         }
-        console.log("newu",newu);
         newu.reputation = 0;
         //newu.aCoin += deposit; // return the deposit regardless of the proposal outcome
         await userRegistry.update(newu);
