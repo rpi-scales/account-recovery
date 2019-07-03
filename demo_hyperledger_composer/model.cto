@@ -44,7 +44,7 @@ participant User identified by userId {
     o Integer aCoin
     o Integer iteration
     o Integer reputation
-    o Integer recovered
+    o Integer attemptedRecover
     --> User[] voters
 }
 transaction Trade {
@@ -62,9 +62,8 @@ asset VoteToken identified by votetokenID {
     o String votetokenID
     o String response
     --> Poll poll
-    
-    // Below is specific to the network (to be edited)
     --> User creator
+    --> User voter
     --> User owner
 }
 
@@ -75,6 +74,8 @@ asset Proposal identified by proposalID {
     o String newAccount
     o String oldAccount
     o String detailpoll
+    o String stage
+    o Integer votingReward
     --> User owner
 }
 
@@ -84,11 +85,8 @@ asset Poll identified by pollID {
     o String detail
     o String deadline
     o String result
-    
-    // Below is for RSA encryption
     o RSAKey rsakey
-    
-    // Below is specific to the network (to be edited)
+    o String[] validAnswers
     --> User host
 }
 
@@ -99,7 +97,6 @@ transaction SendMoney {
 }
 
 transaction Recovery {
-    o String proposalName
     o String sos
     o String detail
     o String initiator
@@ -107,7 +104,6 @@ transaction Recovery {
 }
 
 transaction EndRecovery {
-    o String proposalName
     --> Proposal proposal
 }
 
@@ -115,17 +111,11 @@ transaction VetoRecovery {
     --> User owner
 }
 
-
-
 transaction CreatePoll {
     o String pollName
     o String pollDetail
     o String pollDeadline
-    
-    // Below is for RSA encryption
     o String publicKey
-    
-    // Below is specific to the network (to be edited)
     --> User pollOwner
     --> User[] voters
 }
@@ -144,7 +134,6 @@ transaction RevealKey {
 
 transaction CompletePoll {
   --> Poll poll
-    // Below is specific to the network (to be edited)
 }
 
 asset RSAKey identified by rsakeyID{

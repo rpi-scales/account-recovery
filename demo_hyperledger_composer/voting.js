@@ -5,22 +5,22 @@
  * @transaction
  */
 async function sendMoney(sendMoney) {
-    if (sendMoney.sender.recovered == 1){
+    if (sendMoney.sender.recovered == 1) {
       throw new Error("This account has been revoked!");
     }
-    if (sendMoney.sender.aCoin < sendMoney.amount){
+    if (sendMoney.sender.aCoin < sendMoney.amount) {
         throw new Error('Balance is not enough');
     }
     sendMoney.receiver.aCoin += sendMoney.amount;
     sendMoney.sender.aCoin -= sendMoney.amount;
     const assetRegistry = await getParticipantRegistry('org.example.basic.User');
-    for(let i=0; i < sendMoney.receiver.voters.length; i++){
+    for(let i=0; i < sendMoney.receiver.voters.length; i++) {
       if(sendMoney.receiver.voters[i].userId != sendMoney.sender.userId && sendMoney.receiver.voters[i].name == sendMoney.sender.name){
         throw new Error('Multiple accounts for the same sender!');
       }
     }
     let dup = 0;
-    for (let i = 0; i < sendMoney.sender.voters.length; i++){
+    for (let i = 0; i < sendMoney.sender.voters.length; i++) {
         if (sendMoney.receiver.getIdentifier() == sendMoney.sender.voters[i].getIdentifier()) {
             dup = 1;
         }
@@ -29,7 +29,7 @@ async function sendMoney(sendMoney) {
         sendMoney.sender.voters.push(sendMoney.receiver);
     }
     dup = 0;
-    for (let i = 0; i < sendMoney.receiver.voters.length; i++){
+    for (let i = 0; i < sendMoney.receiver.voters.length; i++) {
         if (sendMoney.sender.getIdentifier() == sendMoney.receiver.voters[i].getIdentifier()) {
             dup = 1;
         }
@@ -70,8 +70,7 @@ async function createANewPoll(createPoll) {
     }
 
     const factory = getFactory();
-  
-    // Below is specific to the network (to be edited)
+
     const namespace = 'org.example.basic';
   
     const newpoll = factory.newResource(namespace, 'Poll', createPoll.pollName);
@@ -129,11 +128,16 @@ async function createANewPoll(createPoll) {
  * @transaction
  */
 async function voteForPoll(vote) {
-
-    //check the deadline
+    if (vote.votetoken.poll.result != '') {
+        throw new Error("Invalid vote. The poll is already concluded or removed");
+    }
+    if (vote.votetoken.poll.validAnswers.indexOf(vote.response) == -1) {
+        throw new Error("Invalid vote. The accepted answers are: "+vote.votetoken.poll.validAnswers.join());
+    }
     if(vote.votetoken.owner.recovered == 1){
       throw new Error("Vote owner's account has been revoked!");
     }
+    //check the deadline
     if (vote.votetoken.poll.deadline != '') {
         let ddldate = new Date(vote.votetoken.poll.deadline);
         ddldate = ddldate.getTime();
@@ -141,7 +145,6 @@ async function voteForPoll(vote) {
             throw new Error('Poll deadline already past');
         }
     }
-    
     // Encrypt the vote
     let response ='';
     if (vote.votetoken.poll.rsakey.n != '') {
@@ -236,7 +239,7 @@ async function CompleteThePoll(completePoll) {
     console.log('completePoll');
     
     //check the deadline
-    if (completePoll.poll.deadline != ''){
+    if (completePoll.poll.deadline != '') {
         let ddldate = new Date(completePoll.poll.deadline);
         ddldate = ddldate.getTime();
         if (Date.now() < ddldate) {
@@ -245,7 +248,7 @@ async function CompleteThePoll(completePoll) {
     }
 
     let encrypted = false;
-    if (completePoll.poll.rsakey.n != ''){
+    if (completePoll.poll.rsakey.n != '') {
         console.log("Decrypting votes...");
         encrypted = true;
     }
@@ -295,7 +298,6 @@ async function CompleteThePoll(completePoll) {
         // persist the state of the votetoken
         //await assetRegistry.update(completePoll.poll);
 
-
         let nbclassifier = new Naivebayes();
         // get the wanted classifier
         const nbcf = await query('selectNBclassifier', { nbcID: "nbc-public" });
@@ -313,8 +315,6 @@ async function CompleteThePoll(completePoll) {
         let jsonnb = nbclassifier.toJson();
         jsonnb = jsonnb.replace(/'/g, '"');
         console.log(jsonnb);
-
-
         
     } else {
         throw new Error('Poll already concluded or no voters has voted yet');

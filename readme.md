@@ -6,7 +6,7 @@ Decentralized applications achieve stronger security and fault tolerance by plac
 
 Because there is no trusted central management, a decentralized application can do little when a user loses their private key. Therefore, as decentralized applications are becoming mainstream, account recovery will be a much-needed feature.
 
-More explanation could be found at <https://rpi-scales.github.io/account-recovery/>.
+More explanation could be found at <https://kirbisity.github.io/scales_project/>.
 
 ### Get Started
 
@@ -29,7 +29,6 @@ The **basic-sample-network.bna** file under [demo_hyperledger_composer](https://
   "aCoin": 100,
   "iteration": 0,
   "reputation": 100,
-  "recovered": 0,
   "voters": []
 }
 ```
@@ -60,6 +59,7 @@ Preparation is now complete. Then you may use the following transactions to go t
 ```
 {
   "$class": "org.example.basic.Recovery",
+  "proposalName": "recovery0",
   "sos": "I just realized that I lost my account...",
   "detail": "a1d19e476016aea3a4313315c13f0a716eef25d...",
   "initiator": "user3",
@@ -75,10 +75,9 @@ You should now see a new proposal called recovery0 and one votetoken called VT-r
 {
 	"$class": "org.example.basic.Vote",
 	"response": "True",
-	"votetoken": "resource:org.example.basic.VoteToken# ****** "
+	"votetoken": "resource:org.example.basic.VoteToken#VT-recovery0-0"
 }
 ```
-replace ****** with the VoteToken ID
 
 **Option A**
 
@@ -87,10 +86,10 @@ replace ****** with the VoteToken ID
 ```
 {
   "$class": "org.example.basic.EndRecovery",
-  "proposal": "resource:org.example.basic.Proposal# ****** "
+  "proposalName": "recovery0",
+  "proposal": "resource:org.example.basic.Proposal#recovery0"
 }
 ```
-replace ****** with the Proposal ID
 
 If the vote is passed. The money in user0 should be 0 and the money is given to user3.
 
@@ -159,37 +158,3 @@ In the search for a method to alleviate this limitation, we draw inspiration fro
 For future work, we can add a service to periodically cluster the accounts in our network to identify the accounts likely to belong to the same person. When a recovery request is submitted, as the information about account owner's trade partners is recovered from the historian registry, the smart contract can then filter out the voters that are likely to be a duplicate account of another voter in the current voting group and only retain one of them as a voter.
 
 Furthermore, even though our work has primarily been on the Hyperledger eco-system. The application could see more practicality in Ethereum. So developing on Ethereum might be an option.
-
-
-The following classifier.js, rsa.js and library.js contain works of other programmers
-
-{
-classifier.js   // Modified from Tolga Tezel's work
-	--
-	Copyright (c) by Tolga Tezel <tolgatezel11@gmail.com>
-	--
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
-	--
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
-	--
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	THE SOFTWARE.
-}
-
-{
-rsa.js          // Copyright (c) 2005  Tom Wu
-library.js      // Copyright (c) 2005  Tom Wu Basic JavaScript BN library
-	@author "Tom Wu" <tjw@cs.stanford.edu>
-	http://www-cs-students.stanford.edu/~tjw/jsbn/
-}
