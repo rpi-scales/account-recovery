@@ -45,3 +45,48 @@ let key4 = {
 }
 
 let keys = [key0, key1, key2, key3, key4];
+
+
+
+function rsaKey() {
+    this.n = '';
+    this.e = 10001;
+    this.d = '';
+    this.p = '';
+    this.q = '';
+    this.dmp1 = '';
+    this.dmq1 = '';
+    this.coeff = '';
+
+    this.setPub = function(pubKey) {
+    	this.n = pubKey;
+    };
+    this.setAll = function(n, e, d, p, q) {
+    	this.n = n;
+	    this.e = e;
+	    this.d = d;
+	    this.p = p;
+	    this.q = q;
+	    this.validate();
+    }
+    this.validate = function() {
+        let d = parseBigInt(this.d,16);
+	    let p = parseBigInt(this.p,16);
+	    let q = parseBigInt(this.q,16);
+	    let p1 = p.subtract(BigInteger.ONE);
+	    let q1 = q.subtract(BigInteger.ONE);
+	    let dmp1 = d.mod(p1);
+	    let dmq1 = d.mod(q1);
+	    let coef = q.modInverse(p);
+	    this.dmp1 = dmp1.toString();
+	    this.dmq1 = dmq1.toString();
+	    this.coeff = coef.toString();
+	    // test if the private key is correct before update to the RSAkey
+	    let test = 'Test RSA encryption';
+	    let ctest = RSAencrypt(test, this);
+	    ctest = RSAdecrypt(ctest, this);
+	    if (test != ctest) {
+	        alert('Incorrect public/secret key pair, please try again');
+	    }
+    }
+}

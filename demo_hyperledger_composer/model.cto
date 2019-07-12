@@ -41,6 +41,7 @@ asset Commodity identified by tradingSymbol {
 participant User identified by userId {
     o String userId
     o String name
+    o String pubKey
     o Integer aCoin
     o Integer iteration
     o Integer reputation

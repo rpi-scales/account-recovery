@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recovery Encrypter</title>
+	<style type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
+		html {
+		    font-size: 100%;
+		    -webkit-text-size-adjust: 100%;
+		    -ms-text-size-adjust: 100%;
+		}
+		body {
+		    color: #eee;
+		    -webkit-font-smoothing: antialiased;
+			background: #555;
+			background-repeat: repeat;
+		    font-size: 16px !important;
+		    font-family: 'Cousine', monospace; !important;
+		}
+		input, textarea{
+			background-color: #333;
+			font-size: 16px;
+			color: #eee;
+		}
+		input:focus, textarea:focus{
+			background-color: #334045;
+		}
+		.input1, textarea{
+			padding: 3px;
+			font-size: 14px;
+		}
+		.input1:focus, textarea:focus, .input3:focus{
+			outline: none;
+		}
+		.bigBtn{
+			font-size: 20px;
+		}
+		#prooftxt{
+			width: 800px;
+			height: 300px;
+		}
+		.voterBox{
+			font-size: 16px;
+			width: 800px;
+		}
+		#anstxt{
+			width:800px;
+		}
+		
+	</style>
+	<script type="text/javascript" src="../resources/library.js"></script>
+	<script type="text/javascript" src="../resources/sampleRSAKeys.js"></script>
+	<script type="text/javascript" src="../resources/rsa.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+
+</head>
+<body onload="clear()">
+	<h1>Recovery Proof Viewer</h1>
+	<p>Paste the "detail" field in the proposal in the textbox</p>
+	<br>
+	<textarea id="prooftxt" class="input1" name="resulttxt" type="text" value="Encrypted result" rows="10" cols="30"></textarea>
+	<br>
+	<p>Enter your complete RSA key information below to decrypt</p>
+	n:
+	<input type="text" id="inputn" value="6317648c119084ddbd7b317b6e753f7d1a513d64151003068dd4c7b6f983b992821c49a4ea25bd43e674ae9567870698c40586286dc89f935d58eba0d5759ce1">
+	<br>
+	e:
+	<input type="text" id="inpute" value="10001">
+	<br>
+	d:
+	<input type="text" id="inputd" value="dceb8a7fbda9369027a240efaf9437b7f2b4acea350b3db39f028540ab89c26ecaa5d4835cf55e444ba2cc9436798636043f71bc661330011ef24ca45500171">
+	<br>
+	p:
+	<input type="text" id="inputp" value="c542a13db8a66dfbef4ea31da13d77f2a734e156596db521d0839d2c2d79d59b">
+	<br>
+	q:
+	<input type="text" id="inputq" value="80993d21b23d28d49e7eb31f68851b11848e80b89564a1f84ed87b61a5909d33">
+	<br>
+	<br>
+	<button id="decryptProof" class="bigBtn" onclick="decryptProof()">Decrypt the proof</button>
+	<div id="voterMain"></div>
+	<br>
+	<p>The decrypted proof for you is</p>
+	<textarea id="anstxt" class="input1" type="text" value="Encrypted result"></textarea>
+</html>
