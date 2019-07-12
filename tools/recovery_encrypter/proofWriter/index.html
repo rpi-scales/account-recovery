@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recovery Encrypter</title>
+	<style type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
+		html {
+		    font-size: 100%;
+		    -webkit-text-size-adjust: 100%;
+		    -ms-text-size-adjust: 100%;
+		}
+		body {
+		    color: #333333;
+		    -webkit-font-smoothing: antialiased;
+			background: #eee;
+			background-repeat: repeat;
+		    font-size: 16px !important;
+		    font-family: 'Cousine', monospace; !important;
+		}
+		input:focus, textarea:focus{
+			background-color: #fffdd1;
+		}
+		.input1, textarea{
+			color: #454545;
+			padding: 3px;
+			font-size: 14px;
+		}
+		.input1:focus, textarea:focus, .input3:focus{
+			outline: none;
+		}
+		.bigBtn{
+			font-size: 20px;
+		}
+		#resulttxt{
+			width: 800px;
+			height: 300px;
+		}
+		.voterBox{
+			font-size: 16px;
+			width: 800px;
+		}
+		
+	</style>
+	<script type="text/javascript" src="../resources/library.js"></script>
+	<script type="text/javascript" src="../resources/sampleRSAKeys.js"></script>
+	<script type="text/javascript" src="../resources/rsa.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+
+</head>
+<body onload="clear()">
+	<h1>Recovery Encrypter</h1>
+	<p>Click button to write proof</p>
+	<button id="writeProof" class="bigBtn" onclick="createInput()">Write Proof</button>
+	<div id="voterMain"></div>
+	<p>Encrypted result below: (submit in the "detail" field in the proposal)</p>
+	<textarea id="resulttxt" class="input1" name="resulttxt" type="text" value="Encrypted result" rows="10" cols="30"></textarea>
+</html>
