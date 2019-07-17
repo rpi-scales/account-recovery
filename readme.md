@@ -8,6 +8,9 @@ Because there is no trusted central management, a decentralized application can 
 
 More explanation could be found at <https://kirbisity.github.io/scales_project/>.
 
+We also have the Hyperledge fabric version of the demo, it's linked here:
+https://github.com/rpi-scales/account-recovery-fabric
+
 ### Get Started
 
 >  This project aims to provide users a method to recover a lost account in a decentralized application
